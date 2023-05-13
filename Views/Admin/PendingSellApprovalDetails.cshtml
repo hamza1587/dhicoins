@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewData["Title"] = "PendingSellApprovalDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!-- begin:: Subheader -->
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container ">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                Customer
+            </h3>
+            <span class="kt-subheader__separator kt-hidden"></span>
+            <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                    <i class="flaticon2-shelter"></i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Sell
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Details
+                </a>
+
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+<div class="kt-container  kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    Pending Sell Approval Detail
+                </h3>
+            </div>
+        </div>
+
+        <!--begin::Form-->
+        <form class="kt-form">
+            <div class="kt-portlet__body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Order Number</label>
+                            <input type="text" class="form-control" disabled="disabled"
+                                   value="ORDB/194">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Order Date</label>
+                            <input type="datetime" class="form-control" disabled="disabled"
+                                   value="12/02/2022 17:03">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Coin Value</label>
+                            <input type="text" class="form-control" disabled="disabled"
+                                   value="1000 MVR">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Conversion Value ($)</label>
+                            <input type="text" class="form-control" disabled="disabled"
+                                   value="0.05634">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Chain</label>
+                            <input type="text" class="form-control" disabled="disabled"
+                                   value="BTC/BITCOIN">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Commission (%)</label>
+                            <input type="text" class="form-control" disabled="disabled"
+                                   value="35.00">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Final Currency Value</label>
+                            <input type="text" class="form-control" disabled="disabled"
+                                   value="500.00000 MVR">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Chain <span class="kt-font-danger kt-font-bold">*</span></label>
+                            <input type="email" class="form-control" disabled="disabled"
+                                   value="example123@gmail.com">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Exchange</label>
+                            <input type="email" class="form-control"
+                                   value="gateio">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Customer BML Account Number</label>
+                            <input type="text" class="form-control" disabled="disabled"
+                                   value="ue4hr487rer9389309034jd">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleTextarea">Customer Remarks</label>
+                            <textarea class="form-control" disabled="disabled" rows="3" value="sndjnsdj"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleTextarea">Customer Remarks</label>
+                            <textarea class="form-control" disabled="disabled" rows="3" value="sndjnsdj"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <button type="reset" class="btn btn-brand">Approve</button>
+                    &nbsp;
+                    <button type="reset" class="btn btn-warning">Reject</button>
+                    &nbsp;
+                    <button type="reset" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+        </form>
+
+        <!--end::Form-->
+    </div>
+
+</div>
+
+<!-- end:: Content -->

@@ -1,0 +1,277 @@
+﻿
+@{
+    ViewData["Title"] = "Buy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #Buy-Portlet-2 {
+        display: none;
+    }
+
+    .dhicoin-input-group {
+        background-color: white;
+        border-radius: 5px;
+        border: 1px solid #e2e5ec;
+        display: flex;
+        overflow: hidden;
+    }
+
+    .dhicoin-input {
+        width: 80%;
+    }
+
+    .dhicoin-select {
+        width: 20%;
+    }
+
+        .dhicoin-input input, .dhicoin-select select {
+            width: 100%;
+            height: 40px;
+            border: 0px;
+            padding: 7px;
+        }
+
+            .dhicoin-input input, .dhicoin-select select:focus {
+                outline: none;
+            }
+
+        .dhicoin-select select {
+            background-color: #eeeeee;
+            font-size: 15px;
+        }
+
+    .dhicoin-input-group:focus-within {
+        border-color: #8357f5;
+    }
+</style>
+
+
+<!-- begin:: Subheader -->
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container ">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                Buy
+            </h3>
+            <span class="kt-subheader__separator kt-hidden"></span>
+            <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                    <i class="flaticon2-shelter"></i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="buyDetail.html" class="kt-subheader__breadcrumbs-link">
+                    Buy
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Details
+                </a>
+
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+<div class="kt-container  kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet" id="Buy-Portlet-1">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    Buy
+                </h3>
+            </div>
+        </div>
+        <!--begin::Form-->
+        <form class="kt-form">
+            <div class="kt-portlet__body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="dhicoin-input-group">
+                                <div class="dhicoin-input">
+                                    <input type="text">
+                                </div>
+                                <div class="dhicoin-select">
+                                    <select name="" id="">
+                                        <option value="" selected>MVR</option>
+                                        <option value="">MVR 1</option>
+                                        <option value="">MVR 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="dhicoin-input-group">
+                                <div class="dhicoin-input">
+                                    <input type="text">
+                                </div>
+                                <div class="dhicoin-select">
+                                    <select name="" id="">
+                                        <option value="" selected>BTC</option>
+                                        <option value="">Eth</option>
+                                        <option value="">Doge</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="kt-badge kt-badge--inline kt-badge--dark">Higher Limit </span><span class="ml-2"><a class="" href="">Contact Us</a></span>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-dark kt-font-boldest">Select the Chain: ( ERC20 chain will be enabled for USDT up on request )</p>
+                            <div class="kt-radio-inline">
+                                <label class="kt-radio kt-radio--brand">
+                                    <input type="radio" name="radio2"> BTC/BITCOIN
+                                    <span></span>
+                                </label>
+                                <label class="kt-radio kt-radio--brand">
+                                    <input type="radio" name="radio2"> BSC/BEP20
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-dark kt-font-boldest">Insert your Trust Wallet Receive Address Don't write it, it must be exact character so copy and paste it</p>
+                            <input type="text" class="form-control" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <div class="alert alert-warning fade show" role="alert">
+                                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                <div class="alert-text">
+                                    <p class="kt-font-dark kt-font-boldest">Do not enter a wallet address that anyone else can access!</p>
+                                    <p>Scammers often impersonate account managers, brokers, support, or even romantic partners abroad. Use extreme caution and remember: cryptocurrency transactions are irreversible!</p>
+                                </div>
+                                <div class="alert-close">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <button type="reset" class="btn btn-primary text-uppercase" id="Buy-select" onclick="startTimer()">Go to payment</button>
+                </div>
+            </div>
+        </form>
+
+        <!--end::Form-->
+    </div>
+    <div class="kt-portlet" id="Buy-Portlet-2">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    Buy Coins
+                </h3>
+            </div>
+        </div>
+
+        <!--begin::Form-->
+        <form class="kt-form">
+            <div class="kt-portlet__body">
+                <div class="form-group text-center">
+                    <h2>Order Expires in <span id="timer">10:00</span> minutes</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <div class="form-group">
+                            <p>
+                                Amount Of Cryptocurrency Puschasing: <span>BTC 0.00147</span>
+                            </p>
+                            <p>
+                                Cryptocurrency RECEIVE ADDRESS: <span>Demo Data</span>
+                            <p>
+                                0xd4babe73f0c02e06291f57757c2a4a3cb0a04c41
+                            </p>
+                            
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-primary kt-font-boldest">Transfer the exact amount via BML Online Banking to the following Bank Details</p>
+                            <label class="kt-font-boldest">BANK OF MALDIVES</label><br>
+                            <label class="kt-font-boldest">Account Number MVR:</label><br>
+                            <input class="form-control d-inline" style="width:250px;" value="37267739" disabled>
+                            <button class="btn btn-primary" type="button">Copy</button>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-primary kt-font-boldest">
+                                Please note that this transaction is NON-Refundable. Uploading a fake Bank slip will result in a permanant BAN from our system.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-primary kt-font-boldest">
+                                In order for the payment to be accepted,the funds must come from your own account: <span class="kt-font-dark">7882828749493</span>
+                            </p>
+                            <p class="kt-font-primary kt-font-boldest">
+                                So no third party transfers including ATM transfer or Interbank tranfers,will be not accepted under any circumstances.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Reference Note (Optional)</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>File Browser</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-dark kt-font-boldest"><em>Note: Any order placed after 12 PM will be processed the next day morning before 08:00 PM</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <button type="reset" class="btn btn-primary">Payment Complete</button>
+                </div>
+            </div>
+        </form>
+
+        <!--end::Form-->
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+            function startTimer() {
+            var timeLeft = 600; // 60 seconds = 1 minute , 600 seconds = 10 minutes
+            var timer = document.getElementById('timer');
+
+                var countdown = setInterval(function () {
+                    timeLeft--;
+                    var minutes = Math.floor(timeLeft / 60);
+                    var seconds = timeLeft % 60;
+
+                    minutes = (minutes < 10) ? '0' + minutes : minutes;
+                    seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+                    timer.innerHTML = minutes + ':' + seconds;
+
+                    if (timeLeft == 0) {
+                        clearInterval(countdown);
+                        location.reload(); // refresh the page
+                    }
+                }, 1000);
+            }
+    </script>
+    <script>
+        $(document).ready(function (){
+            $("#Buy-select").click(function(){
+                $("#Buy-Portlet-1").css("display", "none");
+                $("#Buy-Portlet-2").css("display", "block");
+            });
+        });
+    </script>
+}

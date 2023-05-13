@@ -1,0 +1,306 @@
+﻿
+@{
+    ViewData["Title"] = "Sell";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style>
+    #Buy-Portlet-2, #Buy-Portlet-3 {
+        display: none;
+    }
+
+    .dhicoin-input-group {
+        background-color: white;
+        border-radius: 5px;
+        border: 1px solid #e2e5ec;
+        display: flex;
+        overflow: hidden;
+    }
+
+    .dhicoin-input {
+        width: 80%;
+    }
+
+    .dhicoin-select {
+        width: 20%;
+    }
+
+        .dhicoin-input input, .dhicoin-select select {
+            width: 100%;
+            height: 40px;
+            border: 0px;
+            padding: 7px;
+        }
+
+            .dhicoin-input input, .dhicoin-select select:focus {
+                outline: none;
+            }
+
+        .dhicoin-select select {
+            background-color: #eeeeee;
+            font-size: 15px;
+        }
+
+    .dhicoin-input-group:focus-within {
+        border-color: #8357f5;
+    }
+
+    .dhicoin-ul-block {
+        width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+    }
+</style>
+
+
+<!-- begin:: Subheader -->
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container ">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                Sell
+            </h3>
+            <span class="kt-subheader__separator kt-hidden"></span>
+            <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                    <i class="flaticon2-shelter"></i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="buyDetail.html" class="kt-subheader__breadcrumbs-link">
+                    Sell
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Details
+                </a>
+
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+<div class="kt-container  kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet" id="Buy-Portlet-1">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    Sell Coins
+                </h3>
+            </div>
+        </div>
+        <!--begin::Form-->
+        <form class="kt-form">
+            <div class="kt-portlet__body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Pay</label>
+                            <div class="dhicoin-input-group">
+                                <div class="dhicoin-input">
+                                    <input type="text">
+                                </div>
+                                <div class="dhicoin-select">
+                                    <select name="" id="">
+                                        <option value="" selected>MVR</option>
+                                        <option value="">MVR 1</option>
+                                        <option value="">MVR 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Receive</label>
+                            <div class="dhicoin-input-group">
+                                <div class="dhicoin-input">
+                                    <input type="text">
+                                </div>
+                                <div class="dhicoin-select">
+                                    <select name="" id="">
+                                        <option value="" selected>BTC</option>
+                                        <option value="">Eth</option>
+                                        <option value="">Doge</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <button type="reset" class="btn btn-primary text-uppercase" id="sell-select-1">Go to payment</button>
+                </div>
+            </div>
+        </form>
+
+        <!--end::Form-->
+    </div>
+    <div class="kt-portlet" id="Buy-Portlet-2">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    Sell Coins
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+            <div class="form-group text-center">
+                <h3 class="mb-5">One Last Thing</h3>
+                <p>We're working hard to keep both you and blockchain safe, and have just a few questions we need to ask</p>
+            </div>
+            <div class="form-group">
+                <div class="dhicoin-ul-block border shadow">
+                    <p class="kt-font-boldest">
+                        I got this coin from
+                    </p>
+                    <ul class="nav nav-pills nav-fill" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_tabs_5_1">Exchange</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#kt_tabs_5_2">Person</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mb-3">
+                        <div class="tab-pane active" id="kt_tabs_5_1" role="tabpanel">
+                            <select class="form-control">
+                                <option selected disabled>Choose</option>
+                                <option>Choose</option>
+                                <option>Choose</option>
+                            </select>
+                        </div>
+                        <div class="tab-pane " id="kt_tabs_5_2" role="tabpanel">
+                            <select class="form-control">
+                                <option selected disabled>Choose</option>
+                                <option>Choose</option>
+                                <option>Choose</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-top">
+                        <label class="kt-checkbox kt-checkbox--bold kt-checkbox--brand">
+                            <input type="checkbox">I confirm tha I am the real owner of these coins
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary" id="sell-select-2" type="button" onclick="startTimer()">Continue</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="kt-portlet" id="Buy-Portlet-3">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    Sell Coins
+                </h3>
+            </div>
+        </div>
+
+        <!--begin::Form-->
+        <form class="kt-form">
+            <div class="kt-portlet__body">
+                <div class="form-group text-center">
+                    <h2>Order Expires in <span id="timer">10:00</span> minutes</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label>Sell Amount</label>
+                            <input class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                500 MVR WILL BE DEPOSITED TO THE BELOW ACCOUNT
+                            </p>
+                            <p>
+                                (Your MVR Account): <span>7236e744237</span>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-primary kt-font-boldest">
+                                From your own wallet send the exact cryptocurrency amount to the wallet address provided below
+                            </p>
+                            <p class="kt-font-boldest">Chain:</p>
+                            <div class="kt-radio-inline">
+                                <label class="kt-radio kt-radio--brand">
+                                    <input type="radio" name="radio2"> BTC/BITCOIN
+                                    <span></span>
+                                </label>
+                                <label class="kt-radio kt-radio--brand">
+                                    <input type="radio" name="radio2"> BSC/BEP20
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-dark kt-font-boldest"><em>NOTE: MAKE SURE TO SUBMIT THE REQUEST AFTER SENDING CRYPTOCURRENCIES</em></p>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-dark kt-font-boldest"><em>Note: Any order placed after 12 PM will be processed the next day morning before 08:00 PM</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <button type="reset" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+
+        <!--end::Form-->
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+        function startTimer() {
+            var timeLeft = 600; // 60 seconds = 1 minute , 600 seconds = 10 minutes
+            var timer = document.getElementById('timer');
+
+            var countdown = setInterval(function () {
+                timeLeft--;
+                var minutes = Math.floor(timeLeft / 60);
+                var seconds = timeLeft % 60;
+
+                minutes = (minutes < 10) ? '0' + minutes : minutes;
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+                timer.innerHTML = minutes + ':' + seconds;
+
+                if (timeLeft == 0) {
+                    clearInterval(countdown);
+                    location.reload(); // refresh the page
+                }
+            }, 1000);
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#sell-select-1").click(function () {
+                $("#Buy-Portlet-1").css("display", "none");
+                $("#Buy-Portlet-2").css("display", "block");
+            });
+            $("#sell-select-2").click(function () {
+                $("#Buy-Portlet-2").css("display", "none");
+                $("#Buy-Portlet-3").css("display", "block");
+            });
+        });
+    </script>
+}

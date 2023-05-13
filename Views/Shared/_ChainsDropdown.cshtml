@@ -1,0 +1,9 @@
+﻿@model List<SelectListItem>
+
+    <select name="ChainName" id="chain-select" class="form-control">
+        <option value="">Select a chain</option>
+        @foreach (var chain in Model)
+        {
+        <option value="@chain.Value">@chain.Text</option>
+        }
+    </select>

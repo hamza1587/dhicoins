@@ -1,0 +1,120 @@
+﻿@page
+@model ExternalLoginModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="kt-grid kt-grid--ver kt-grid--root kt-page">
+    <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v1" id="kt_login">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--desktop kt-grid--ver-desktop kt-grid--hor-tablet-and-mobile">
+
+            <!--begin::Aside-->
+            <div class="kt-grid__item kt-grid__item--order-tablet-and-mobile-2 kt-grid kt-grid--hor kt-login__aside" style="background-image: linear-gradient(174deg, #fffdfd, #2479fe);">
+                <div class="kt-grid__item">
+                    <a href="#" class="kt-login__logo">
+                        <img src="~/assets/media/logos/dhicoins-logo.png">
+                    </a>
+                </div>
+                <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver">
+                    <div class="kt-grid__item kt-grid__item--middle">
+                        <h3 class="kt-login__title kt-font-dark">Welcome to Dhicoin!</h3>
+                        <h4 class="kt-login__subtitle kt-font-dark">For More Information About Our Servies, Please Visit our website Frequently asked question page.</h4>
+                    </div>
+                </div>
+                <div class="kt-grid__item">
+                    <div class="kt-login__info">
+                        <div class="kt-login__copyright kt-font-dark">
+                            &copy 2018 Dhicoin
+                        </div>
+                        <div class="kt-login__menu ">
+                            <a href="#" class="kt-link kt-font-dark">Privacy</a>
+                            <a href="#" class="kt-link kt-font-dark">Legal</a>
+                            <a href="#" class="kt-link kt-font-dark">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--begin::Aside-->
+            <!--begin::Content-->
+            <div class="kt-grid__item kt-grid__item--fluid  kt-grid__item--order-tablet-and-mobile-1  kt-login__wrapper">
+
+                <!--begin::Head-->
+                <div class="kt-login__head">
+                    <span class="kt-login__signup-label">Already have an account.</span>&nbsp;&nbsp;
+                    <a asp-page="./LogIn" asp-route-returnUrl="@Model.ReturnUrl" class="kt-link kt-login__signup-link">Sign In!</a>
+                </div>
+
+                <!--end::Head-->
+                <!--begin::Body-->
+                <div class="kt-login__body">
+
+                    <!--begin::Signin-->
+                    <div class="kt-login__form">
+                        <div class="kt-login__title">
+                            <p id="external-login-description" class="text-info">
+                                You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
+                                Please enter an Password for this site below and click the Register button to finish
+                                logging in.
+                            </p>
+
+                        </div>
+
+                        <!--begin::Form-->
+                        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post" novalidate="novalidate" id="kt_login_form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Input.FullName" class="font-weight-bold"></label>
+                                <input asp-for="Input.FullName" class="form-control" autocomplete="off" aria-required="true" />
+                                <span asp-validation-for="Input.FullName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Email"></label>
+                                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="text-right">
+                                <button type="submit" class="w-25 btn  btn-primary">Register</button>
+                            </div>
+
+                            <!--end::Action-->
+                        </form>
+
+                    </div>
+
+                    <!--end::Signin-->
+                </div>
+
+                <!--end::Body-->
+            </div>
+
+            <!--end::Content-->
+        </div>
+    </div>
+
+</div>
+<script>
+    const passwordInput = document.querySelector('input[type="password"]');
+    const showPasswordBtn = document.querySelector('#show-password-btn');
+    showPasswordBtn.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        showPasswordBtn.innerHTML = `<i class="bi bi-eye${type === 'password' ? '' : '-slash'}"></i>`;
+    });
+</script>
+<script>
+    const confirmPasswordInput = document.querySelector('#Input_ConfirmPassword[type="password"]');
+    const showConfirmPasswordBtn = document.querySelector('#show-password-btn-confirm-password');
+    showConfirmPasswordBtn.addEventListener('click', () => {
+        const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmPasswordInput.setAttribute('type', type);
+        showConfirmPasswordBtn.innerHTML = `<i class="bi bi-eye${type === 'password' ? '' : '-slash'}"></i>`;
+    });
+</script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
