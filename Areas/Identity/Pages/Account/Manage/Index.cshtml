@@ -1,0 +1,71 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+   
+}
+
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+
+
+<div class="kt-grid__item kt-grid__item--fluid kt-app__content">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">@ViewData["Title"]</h3>
+                    </div>
+                </div>
+              
+                    <div class="kt-portlet__body">
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12">
+                                            <form id="profile-form" method="post">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-floating">
+                                                    <label asp-for="Username" class="form-label  font-weight-bold"></label>
+                                                    <input asp-for="Username" class="form-control  mb-2" disabled />
+
+                                                </div>
+                                                <div class="form-floating">
+                                                    <label asp-for="Input.FullName" class="form-label font-weight-bold"></label>
+                                                    <input asp-for="Input.FullName" class="form-control " />
+
+                                                    <span asp-validation-for="Input.FullName" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <label asp-for="Input.PhoneNumber" class="form-label font-weight-bold"></label>
+                                                    <input asp-for="Input.PhoneNumber" class="form-control " />
+
+                                                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                                </div>
+                                                <br />
+                                                <button id="update-profile-button" type="submit" class="w-20 btn  btn-primary">Save</button>
+                                            </form>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

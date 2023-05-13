@@ -1,0 +1,419 @@
+﻿@model Dhicoin.Models.CustomerMasterProfile
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@{
+    var disable = true;
+    if (Model == null)
+    {
+        disable = false;
+    }
+}
+<style>
+    body {
+        background: #eee
+    }
+
+    #regForm {
+        background-color: #ffffff;
+        margin: 0px auto;
+        padding: 20px 20px;
+        border-radius: 5px
+    }
+
+    h1 {
+        text-align: center
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        font-size: 17px;
+        border: 1px solid #aaaaaa
+    }
+
+        input.invalid {
+            background-color: #ffdddd
+        }
+
+    .tab {
+        display: none
+    }
+
+    button:hover {
+        opacity: 0.8
+    }
+
+
+    .step {
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        display: inline-block;
+        opacity: 0.7
+    }
+
+        .step.active {
+            opacity: 1
+        }
+
+        .step.finish button {
+            background-color: #5867dd !important;
+        }
+
+    .all-steps {
+        margin-top: 10px;
+        margin-bottom: 20px
+    }
+
+    .thanks-message {
+        display: none
+    }
+
+    .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+
+        /* Hide the browser's default radio button */
+
+        .container input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+
+    /* Create a custom radio button */
+
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 50%;
+    }
+
+
+    /* On mouse-over, add a grey background color */
+
+    .container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+
+    /* When the radio button is checked, add a blue background */
+
+    .container input:checked ~ .checkmark {
+        background-color: #2196F3;
+    }
+
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+
+    /* Show the indicator (dot/circle) when checked */
+
+    .container input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+
+    /* Style the indicator (dot/circle) */
+
+    .container .checkmark:after {
+        top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+    }
+</style>
+
+
+<!-- begin:: Subheader -->
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container ">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                Profile
+            </h3>
+            <span class="kt-subheader__separator kt-hidden"></span>
+            <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                    <i class="flaticon2-shelter"></i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Home
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Profile
+                </a>
+
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+
+<div class="kt-container  kt-grid__item  kt-grid__item--fluid">
+    <div class="all-steps" id="all-steps">
+        <span class="step">
+            <button class="btn btn-primary">
+                1.Personal
+                Details
+            </button>
+        </span>
+        <span class="step">
+            <button class="btn btn-primary">
+                2.Bank
+                Details
+            </button>
+        </span>
+        <span class="step">
+            <button class="btn btn-primary">
+                3.Verification Status
+            </button>
+        </span>
+    </div>
+    <div class="">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="regForm" method="post" asp-action="Profile" asp-controller="User">
+                    <input asp-for="UserId" type="hidden" />
+
+                    <div class="tab">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label asp-for="FirstName"></label>
+                                    <input type="text" class="form-control" asp-for="FirstName" readonly="@disable"/>
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="LastName"></label>
+                                    <input type="text" class="form-control" asp-for="LastName" readonly="@disable">
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Email"></label>
+                                    <input type="email" class="form-control" asp-for="Email" readonly="@disable">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Gender"></label>
+                                    <select class="form-control" asp-for="Gender" readonly="@disable">
+                                        <option value="Select Gender" selected>Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    <span asp-validation-for="Gender" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="DateOfBirth"></label>
+                                    <input type="date" class="form-control" asp-for="DateOfBirth" readonly="@disable">
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="CountryCode"></label>
+                                    <input type="text" class="form-control" asp-for="CountryCode" readonly="@disable">
+                                    <span asp-validation-for="CountryCode" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="kt-font-dark kt-font-bolder">NOTE: Make sure the given information match asper National ID Card. Invalid information will lead to failure of Biometric KYC Verification</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="BankName"></label>
+                                    <input type="text" class="form-control" asp-for="BankName" readonly="@disable">
+                                    <span asp-validation-for="BankName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Account"> </label>
+                                    <input type="text" class="form-control" asp-for="Account" readonly="@disable">
+                                    <span asp-validation-for="Account" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div><div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="NameRegisteredInBMl"></label>
+                                    <input type="text" class="form-control" asp-for="NameRegisteredInBMl" readonly="@disable">
+                                    <span asp-validation-for="NameRegisteredInBMl" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+                            <p class="kt-font-dark kt-font-bolder">NOTE: Enter your MVR account number registered under your name only. USD accounts are not accepted. Buying and selling will be done via the MVR account number given here. Therefore, no third party account is allowed under any circumstances</p>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-gorup">
+                                        <p class="kt-font-dark">KYS Verification Status <span class="kt-badge kt-badge--inline kt-badge--danger">Pending</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-gorup">
+                                        <p class="kt-font-dark">Customer Creation Status <span class="kt-badge kt-badge--inline kt-badge--danger">Pending</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div style="overflow:auto;" id="nextprevious">
+                        <div style="float:right;">
+                            <button type="submit" id="prevBtn" class="btn btn-light"
+                                    onclick="nextPrev(-1)">
+                                Previous
+                            </button>
+                            <button type="submit"
+                                    id="nextBtn" onclick="nextPrev(1)" class="btn btn-primary">
+                                Next
+                            </button>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- end:: Content -->
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"
+            asp-fallback-src="~/Identity/lib/jquery-validation/dist/jquery.validate.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator"
+            crossorigin="anonymous"
+            integrity="sha384-rZfj/ogBloos6wzLGpPkkOr/gpkBNLZ6b6yLy4o+ok+t/SAKlL5mvXLr0OXNi1Hp">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"
+            asp-fallback-src="~/Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"
+            crossorigin="anonymous"
+            integrity="sha384-R3vNCHsZ+A2Lo3d5A6XNP7fdQkeswQWTIPfiYwSpEP3YV079R+93YzTeZRah7f/F">
+    </script>
+    <script>
+        //your javascript goes here
+        var currentTab = 0;
+        document.addEventListener("DOMContentLoaded", function (event) {
+
+
+            showTab(currentTab);
+
+        });
+
+        function showTab(n) {
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "Submit";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            fixStepIndicator(n)
+        }
+
+        function nextPrev(n) {
+            var x = document.getElementsByClassName("tab");
+            if (n == 1 && !validateForm()) return false;
+            x[currentTab].style.display = "none";
+            currentTab = currentTab + n;
+            if (currentTab >= x.length) {
+                document.getElementById("regForm").submit();
+                return false;
+                alert("sdf");
+                document.getElementById("nextprevious").style.display = "none";
+                document.getElementById("all-steps").style.display = "none";
+                document.getElementById("register").style.display = "none";
+                document.getElementById("text-message").style.display = "block";
+            }
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].getElementsByTagName("input");
+            for (i = 0; i < y.length; i++) {
+                if (y[i].value == "") {
+                    y[i].className += " invalid";
+                    valid = false;
+                }
+            }
+            if (valid) { document.getElementsByClassName("step")[currentTab].className += ""; }
+            return valid;
+        }
+
+        function fixStepIndicator(n) {
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) { x[i].className = x[i].className.replace(" active", ""); }
+            x[n].className += " active";
+        }
+    </script>
+}
+<partial name="_ValidationScriptsPartial" />

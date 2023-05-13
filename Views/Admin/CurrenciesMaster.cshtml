@@ -1,0 +1,309 @@
+﻿@model Dhicoin.Models.CurrenciesMaster
+@{
+    ViewData["Title"] = "CurrenciesMaster";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<!-- begin:: Subheader -->
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container ">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                Currencies
+            </h3>
+            <span class="kt-subheader__separator kt-hidden"></span>
+            <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                    <i class="flaticon2-shelter"></i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Currencies Master
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    List
+                </a>
+
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+<div class="kt-container  kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+                <span class="kt-portlet__head-icon">
+                    <i class="kt-font-brand flaticon2-line-chart"></i>
+                </span>
+                <h3 class="kt-portlet__head-title">
+                    Currencies List
+                </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <div class="kt-portlet__head-wrapper">
+                    <div class="kt-portlet__head-actions">
+
+                        <button type="button" id="btnOpen" class="btn btn-brand btn-elevate btn-icon-sm"
+                                data-toggle="modal" data-target="#AddNewCurrency">
+                            <i class="la la-plus"></i>
+                            Add Currency
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+
+            <!--begin: Datatable -->
+            <table class="table table-striped- table-bordered table-hover table-checkable"
+                   id="Currencies_Master">
+                <thead>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Currency Name</th>
+                        <th>Symbol</th>
+                        <th>Buy Status</th>
+                        <th>Sell Status</th>
+                        <th style="width: 50px;">Action</th>
+                    </tr>
+                </thead>
+
+            </table>
+
+            <!--end: Datatable -->
+        </div>
+    </div>
+</div>
+
+<!-- end:: Content -->
+<!-- Add User List modal begin -->
+<div class="modal fade" id="AddNewCurrency" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Currency</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form" method="post">
+                    <input type="hidden" name="Id" id="id" />
+                    <input type="hidden" name="BuyStatus" value="true">
+                    <input type="hidden" name="SellStatus" value="true">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">
+                                    Currency Name <span class="kt-font-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="CurrencyName" >
+                                <span class="text-danger" id="CurrencyNameErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">
+                                    Symbol <span class="kt-font-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="Symbol" >
+                                <span class="text-danger" id="SymbolErr"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">
+                                    Coin ID (Get From Coin Gecko) <span class="kt-font-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="CoinId">
+                                <span class="text-danger" id="CoinIdErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">
+                                    Commisssion Applicable <span class="kt-font-danger">*</span>
+                                </label>
+                                <select name="CommissionApplicable" class="form-control" required>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">Curreny Digit</label>
+                                <input type="number" class="form-control" name="Buydigit" >
+                                <span class="text-danger" id="BuydigitErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">
+                                    Buy Commisssion in % <span class="kt-font-danger">*</span>
+                                </label>
+                                <input type="number" class="form-control" name="BuyCommission" min="0" step="0.1" max="100">
+                                <span class="text-danger" id="BuyCommissionErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">Sell Commisssion in %</label>
+                                <input type="text" class="form-control" name="SellCommission" min="0" step="0.1" max="100">
+                                <span class="text-danger" id="SellCommissionErr"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">
+                                    Buy Status <span class="kt-font-danger">*</span>
+                                </label>
+                                <br>
+                                <span class="kt-switch kt-switch--md kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" checked="checked" name="BuyStatus">
+                                        <span class="m-0"></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">
+                                    Sell Status <span class="kt-font-danger">*</span>
+                                </label>
+                                <br>
+                                <span class="kt-switch kt-switch--md kt-switch--icon">
+                                    <label class="m-0">
+                                        <input type="checkbox" checked="checked" name="SellStatus">
+                                        <span class="m-0"></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">Minimum Buy Limit in MVR<span class="kt-font-danger">*</span></label>
+                                <input type="number" class="form-control" name="BuyLimit">
+                                <span class="text-danger" id="BuyLimitErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="form-control-label"> Max Buy Limit in MVR<span class="kt-font-danger">*</span></label>
+                                <input type="number" class="form-control" name="MaxBuyLimit">
+                                <span class="text-danger" id="MaxBuyLimitErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">Minimum Sell Limit in MVR<span class="kt-font-danger">*</span></label>
+                                <input type="number" class="form-control" name="SellLimit">
+                                <span class="text-danger" id="SellLimitErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="" class="form-control-label">Max Sell Limit in MVR<span class="kt-font-danger">*</span></label>
+                                <input type="number" class="form-control" name="MaxSellLimit">
+                                <span class="text-danger" id="MaxSellLimitErr"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-control-label">Buy Conversion Rate<span class="kt-font-danger">*</span></label>
+                                    <input type="text" class="form-control" name="BuyConversionRate" min="0" step="0.1" max="100">
+                                    <span class="text-danger" id="BuyConversionRateErr"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-control-label">Sell Conversion Rate<span class="kt-font-danger">*</span></label>
+                                    <input type="text" class="form-control" name="SellConversionRate" min="0" step="0.1" max="100">
+                                    <span class="text-danger" id="SellConversionRateErr"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-control-label">Add Chain For Buy  <span class="kt-font-danger">*</span></label>
+                                    <select id="BuyChainId" class="form-control multiselect" asp-items="ViewBag.Currency" name="BuyChainId" multiple required>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="form-control-label">Add Chain For Sell  <span class="kt-font-danger">*</span></label>
+                                    <select id="SellChainId" class="form-control multiselect" asp-items="ViewBag.Currency" name="SellChainId" multiple required>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <span style="padding-right:90px; text-align:center; font-weight:bold ">Press Ctrl to select multiple chains</span>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btnSave" type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/CurrenciesMaster.js"></script>
+    
+        <script type="text/javascript">
+        
+        $(function () {
+            $('input[name="BuyStatus"]').change(function () {
+                if ($(this).is(':checked')) {
+                    $('input[name="BuyStatus"]').val('true');
+                } else {
+                    $('input[name="BuyStatus"]').val('false');
+                }
+            });
+        });
+        $(function () {
+            $('input[name="SellStatus"]').change(function () {
+                if ($(this).is(':checked')) {
+                    $('input[name="SellStatus"]').val('true');
+                } else {
+                    $('input[name="SellStatus"]').val('false');
+                }
+            });
+        });
+
+
+    </script>
+}
+
+
+
+
+
+

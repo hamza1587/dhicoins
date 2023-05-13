@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>b9f7dac9-0509-4a58-a2b6-c7e17137f26f</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Admin\BuySellLimit.cshtml" />
+    <Content Remove="Views\Admin\CommissionMaster.cshtml" />
+    <Content Remove="Views\Admin\ConversionMaster.cshtml" />
+    <Content Remove="Views\Admin\CountryMaster.cshtml" />
+    <Content Remove="Views\Admin\Login.cshtml" />
+    <Content Remove="Views\Admin\RaiseTicket.cshtml" />
+    <Content Remove="Views\Admin\SignIn.cshtml" />
+    <Content Remove="wwwroot\js\CustomerApproval.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\CustomerApproval.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\AdminLTEAccount\_Layout.cshtml" />
+    <None Include="Views\Shared\AdminLTEAccount\_Scripts.cshtml" />
+    <None Include="Views\Shared\AdminLTEAccount\_Styles.cshtml" />
+    <None Include="wwwroot\js\CustomerApproval.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
+    <PackageReference Include="MailKit" Version="3.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="6.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="Microsoft.Web.Administration" Version="11.1.0" />
+    <PackageReference Include="MimeKit" Version="3.6.0" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
+    <PackageReference Include="Shyjus.BrowserDetector" Version="2.0.0" />
+    <PackageReference Include="SkiaSharp" Version="2.88.3" />
+    <PackageReference Include="System.Globalization" Version="4.3.0" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Transaction\" />
+  </ItemGroup>
+
+</Project>

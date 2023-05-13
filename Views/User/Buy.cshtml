@@ -1,0 +1,576 @@
+﻿@model Dhicoin.Models.BuyCurrency;
+@{
+    ViewData["Title"] = "Buy";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    #Buy-Portlet-2 {
+        display: none;
+    }
+
+    .dhicoin-input-group {
+        background-color: white;
+        border-radius: 5px;
+        border: 1px solid #e2e5ec;
+        display: flex;
+        overflow: hidden;
+    }
+
+    .dhicoin-input {
+        width: 80%;
+    }
+
+    .dhicoin-select {
+        width: 20%;
+    }
+
+        .dhicoin-input input, .dhicoin-select select {
+            width: 100%;
+            height: 40px;
+            border: 0px;
+            padding: 7px;
+        }
+
+            .dhicoin-input input, .dhicoin-select select:focus {
+                outline: none;
+            }
+
+        .dhicoin-select select {
+            background-color: #eeeeee;
+            font-size: 15px;
+        }
+
+    .dhicoin-input-group:focus-within {
+        border-color: #8357f5;
+    }
+</style>
+
+
+<!-- begin:: Subheader -->
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container ">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                Buy
+            </h3>
+            <span class="kt-subheader__separator kt-hidden"></span>
+            <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                    <i class="flaticon2-shelter"></i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="buyDetail.html" class="kt-subheader__breadcrumbs-link">
+                    Buy
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Details
+                </a>
+
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+<div class="kt-container  kt-grid__item kt-grid__item--fluid">
+    <form class="kt-form" id="form1" novalidate >
+
+        <div class="kt-portlet" id="Buy-Portlet-1">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        Buy
+                    </h3>
+                </div>
+            </div>
+            <!--begin::Form-->
+
+            <div class="kt-portlet__body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="dhicoin-input-group">
+                                <div class="dhicoin-input">
+                                    <input type="number" id="currencyInput" name="MvrToUsdAmount">
+                                </div>
+
+                                <div class="dhicoin-select">
+                                    <select name="" id="">
+                                        <option selected>MVR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <span id="currencyInputError" style="color:red"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="dhicoin-input-group">
+                                <div class="dhicoin-input">
+                                    <input type="number" id="targetAmount" name="BtcAmount">
+                                </div>
+                                <div class="dhicoin-select">
+                                    <select id="targetCurrency" asp-items="@ViewBag.CurrenyList">
+                                    </select>
+                                </div>
+                            </div>
+                            <span id="error" style="color:red"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <span class="kt-badge kt-badge--inline kt-badge--dark">Higher Limit </span><span class="ml-2"><a class="" href="">Contact Us</a></span>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-dark kt-font-boldest">Select the Chain: ( ERC20 chain will be enabled for USDT up on request )</p>
+                            <div class="kt-radio-inline">
+
+                                <label class="kt-radio kt-radio--brand">
+
+                                    <span></span>
+                                </label>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-dark kt-font-boldest">Insert your Trust Wallet Receive Address Don't write it, it must be exact character so copy and paste it</p>
+                            <input type="text" class="form-control" id="WalletAddress" aria-describedby="emailHelp" disabled>                         
+                            <span id="walletError" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="alert alert-warning fade show" role="alert">
+                                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                <div class="alert-text">
+                                    <p class="kt-font-dark kt-font-boldest">Do not enter a wallet address that anyone else can access!</p>
+                                    <p>Scammers often impersonate account managers, brokers, support, or even romantic partners abroad. Use extreme caution and remember: cryptocurrency transactions are irreversible!</p>
+                                </div>
+                                <div class="alert-close">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <button type="button" class="btn btn-primary text-uppercase" disabled  id="Buy-select" onclick="startTimer()">Go to payment</button>
+                </div>
+            </div>
+
+
+            <!--end::Form-->
+        </div>
+
+        <div class="kt-portlet" id="Buy-Portlet-2">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        Buy Coins
+                    </h3>
+                </div>
+            </div>
+
+            <!--begin::Form-->
+
+            <div class="kt-portlet__body">
+                <div class="form-group text-center">
+                    <h2>Order Expires in <span id="timer">10:00</span> minutes</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <div class="form-group">
+                            <p>
+                                Amount Of Cryptocurrency Puschasing: <span id="ConvertAmmount"></span>
+                            </p>
+                            <p>
+                                Cryptocurrency RECEIVE ADDRESS:
+                            <p id="AddwalletAdress">
+
+                            </p>
+
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-primary kt-font-boldest">Transfer the exact amount via BML Online Banking to the following Bank Details</p>
+                            <label class="kt-font-boldest">BANK OF MALDIVES</label><br>
+                            <label class="kt-font-boldest">Account Number MVR:</label><br>
+                            <input id="copyInput" class="form-control d-inline" style="width:250px;" value="37267739" disabled>
+                            <button id="copyButton" class="btn btn-primary" type="button">Copy</button>
+
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-primary kt-font-boldest">
+                                Please note that this transaction is NON-Refundable. Uploading a fake Bank slip will result in a permanant BAN from our system.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-primary kt-font-boldest">
+                                In order for the payment to be accepted,the funds must come from your own account: <span class="kt-font-dark">7882828749493</span>
+                            </p>
+                            <p class="kt-font-primary kt-font-boldest">
+                                So no third party transfers including ATM transfer or Interbank tranfers,will be not accepted under any circumstances.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Reference Note (Optional)</label>
+                            <textarea class="form-control" rows="3" id="ReferenceNote" ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>File Browser</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <div id="Container" class="error-message" style="color:red"></div>
+
+                        </div>
+                        <div class="form-group">
+                            <p class="kt-font-dark kt-font-boldest"><em>Note: Any order placed after 12 PM will be processed the next day morning before 08:00 PM</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <input type="submit" class="btn btn-primary"   value="Payment Complete" />
+
+
+                </div>
+            </div>
+
+
+            <!--end::Form-->
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+
+    <script>
+      
+        $("#form1").submit(function (e) {
+            e.preventDefault();
+            const url = "/User/BuyAmount";
+            const btcAmount = $("#currencyInput").val();
+            const targetAmount = $("#targetAmount").val();
+            const walletAddress = $("#WalletAddress").val();
+            const targetCurrency = $("#targetCurrency").val();
+            const referenceNote = $("#ReferenceNote").val();
+            const Chaincheck = $("[name=CurrenyChain]:checked").val();
+            const fileInput = $("#customFile")[0];
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            const Container = $("#Container");
+
+            if (!file) {
+                Container.text("Please select a file to upload.");
+                return; // Stop the form submission
+            }
+
+            formData.append('MvrToUsdAmount', btcAmount);
+            formData.append('BtcAmount', targetAmount);
+            formData.append('ReceiveWalletAddress', walletAddress);
+            formData.append('SelectCurrency', targetCurrency);
+            formData.append('RefernceNote', referenceNote);
+            formData.append('Picture', file);
+            formData.append('CurrenyChain', Chaincheck);
+
+            $.ajax({
+                url: url,
+                method: "POST",
+                cache: false,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function (r) {
+                    location.reload();
+                },
+                error: function (e) {
+                    errorContainer.text("An error occurred while submitting the form.");
+                }
+            });
+        });
+
+
+
+        document.getElementById('targetCurrency').addEventListener('change', function () {
+            onCurrencyChange();
+        });
+
+        document.getElementById('currencyInput').addEventListener('input', function () {
+            onCurrencyChange();
+        });
+        function onCurrencyChange() {
+            var currency = document.getElementById('currencyInput').value;
+           
+            const targetCurrency = document.getElementById('targetCurrency').value.toLowerCase();
+            $.ajax({
+                url: '/User/GetMaxRate',
+                type: 'POST',
+                data: {
+                    currency: currency,
+                    selectTargetAmount: targetCurrency,                  
+                },
+
+                success: function (response) { 
+                    check = response.decimalAmount;
+                    if (response.success === true) {
+                        $.ajax({
+                            url: '/User/GetConversionRate',
+                            type: 'POST',
+                            data: {
+                                currency: currency,
+                                selectTargetAmount: targetCurrency,
+                            },
+                            success: function (response) {
+                                document.getElementById("targetAmount").value = response.amtinbtc;
+                                var chainList = response.getChainList;
+
+                                // Get the parent element for the radio buttons
+                                var radioParent = document.querySelector('.kt-radio-inline');
+
+                                radioParent.addEventListener('change', function () {
+                                    var input = document.getElementById("WalletAddress");
+                                    input.disabled = false;
+                                });
+
+                                // Remove any existing radio buttons
+                                while (radioParent.firstChild) {
+                                    radioParent.removeChild(radioParent.firstChild);
+                                }
+                                for (var i = 0; i < chainList.length; i++) {
+                                    var label = document.createElement('label');
+                                    label.className = 'kt-radio kt-radio--brand';
+                                    var radio = document.createElement('input');
+                                    radio.type = 'radio';
+                                    radio.name = 'CurrenyChain';
+                                    radio.value = chainList[i];
+                                    radio.className = 'rd-chain';
+                                    var span = document.createElement('span');
+                                    label.appendChild(radio);
+                                    label.appendChild(span);
+                                    label.appendChild(document.createTextNode(chainList[i]));
+                                    radioParent.appendChild(label);
+                                    
+                                }
+
+                                let rdChain = document.getElementsByClassName("rd-chain");
+
+                                for (let i = 0; i < rdChain.length; i++) {
+                                    rdChain[i].addEventListener('change', function () {
+                                        var chian = this.value;
+                                        var currency = document.getElementById('currencyInput').value;
+                                        const targetCurrency = document.getElementById('targetCurrency').value.toLowerCase();
+                                        $.ajax({
+                                            url: '/User/ChainConversion',
+                                            type: 'POST',
+                                            data: {
+                                                currency: currency,
+                                                selectTargetAmount: targetCurrency,
+                                                selectChain: chian,
+                                            },
+                                            success: function (response) {                                
+                                                document.getElementById("targetAmount").value = response.amountinChain;
+                                            },
+                                            error: function (e) {
+                                                alert(e);
+                                            }
+                                        })
+
+                                    })
+                                }
+
+                                document.getElementById('currencyInputError').textContent = ``;
+                                document.getElementById('currencyInput').setCustomValidity(``);
+                            },
+
+                            error: function (error) {
+                                console.log('Error:', error);
+                            }
+
+                        });
+                     
+                    }
+
+                    else if (response.success === false)
+                    {
+                        const minAmount = response.buyminAmount;
+                        const maxAmount = response.buyMaxLimit;
+
+                        document.getElementById('currencyInputError').textContent = `Please enter an amount between ${minAmount} and ${maxAmount}.`;
+                        document.getElementById('currencyInput').setCustomValidity(`Please enter an amount between ${minAmount} and ${maxAmount}.`);
+
+                    }                                 
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                }
+            });
+        }
+
+        var input = document.getElementById("targetAmount");
+
+        input.addEventListener('input', function () {
+
+            var value = input.value;
+            var decimalIndex = value.indexOf(".");
+            if (decimalIndex !== -1 && value.substr(decimalIndex + 1).length > check) {
+                input.value = value.substr(0, decimalIndex + 6);               
+            }
+            else {
+                onbtcChange();
+            }
+           
+        });
+
+     
+        function onbtcChange() {
+            var btcAmount = document.getElementById("targetAmount").value;
+            var targetcurreny = document.getElementById("targetCurrency").value;
+
+            $.ajax({
+                url: '/User/reverseconversion',
+                type: 'POST',
+                data: {
+                    currency: btcAmount,
+                    selectTargetAmount: targetcurreny,
+                },
+                success: function (response) {
+                    console.log(response.roundValue)
+                    document.getElementById("currencyInput").value = response.roundValue
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                }
+
+            });
+        }
+
+        function startTimer() {
+            var timeLeft = 600; // 60 seconds = 1 minute , 600 seconds = 10 minutes
+            var timer = document.getElementById('timer');
+
+            var countdown = setInterval(function () {
+                timeLeft--;
+                var minutes = Math.floor(timeLeft / 60);
+                var seconds = timeLeft % 60;
+
+                minutes = (minutes < 10) ? '0' + minutes : minutes;
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+                timer.innerHTML = minutes + ':' + seconds;
+
+                if (timeLeft == 0) {
+                    clearInterval(countdown);
+                    location.reload(); // refresh the page
+                }
+            }, 1000);
+        }
+
+
+
+
+        const copyInput = document.getElementById('copyInput');
+        const copyButton = document.getElementById('copyButton');
+
+        copyButton.addEventListener('click', () => {
+            copyInput.removeAttribute('disabled');
+            copyInput.select();
+            document.execCommand('copy');
+            copyInput.setAttribute('disabled', true);
+
+            copyButton.textContent = 'Copied';
+            copyButton.style.backgroundColor = 'green';
+
+            setTimeout(() => {
+                copyButton.textContent = 'Copy';
+                copyButton.style.backgroundColor = '';
+            }, 2000); // Change back to 'Copy' after 2 seconds
+        });
+
+
+    </script>
+    <script>
+
+
+        $('#WalletAddress').on('input', function () {
+            var getWalletAddress = $('#WalletAddress').val();
+            var chaincheck = $('input[name="CurrenyChain"]:checked').val();
+
+            $.ajax({
+                url: '/User/AddressMatch',
+                type: 'POST',
+                data: {
+                    WalletAddress: getWalletAddress,
+                    Chain: chaincheck
+                },
+                success: function (response) {                 
+                    var btn = $('#Buy-select');
+
+                    if (response.success === true)
+                    {
+                        btn.prop('disabled', false);
+                        var errorContainer = $("#walletError");
+                        errorContainer.text('');
+                    }
+                    else
+                    {
+                        btn.prop('disabled', true);
+                        var errorContainer = $("#walletError");
+                        errorContainer.text('Please enter Right Wallect Adrees then you can move next');
+                    }
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                }
+            });
+        });
+
+
+        $(document).ready(function () {
+
+            $("#Buy-select").click(function () {
+                var targetAmount = $("#targetamount");
+                var currencyInput = $("#currencyInput");
+                var getAdress = $("#WalletAddress");
+                var errorContainer = $("#walletError");
+
+                if (targetAmount.val() === '' || currencyInput.val() === '') {
+                    errorContainer.text('Please fill in the input fields');
+
+                }
+                else if (getAdress.val() === '')
+                {
+                    errorContainer.text('Please fill in the input fields');
+                }
+                else
+                {
+                    errorContainer.text('');
+
+                    $("#Buy-Portlet-1").css("display", "none");   
+                    $("#Buy-Portlet-2").css("display", "block");
+
+                    var selectbtc = document.getElementById("targetCurrency").value.toUpperCase()
+
+                    var Amount = document.getElementById("targetAmount").value
+
+                    document.getElementById("ConvertAmmount").innerHTML = selectbtc + ": " + Amount;
+
+                    var getWallertAdress = document.getElementById("WalletAddress").value;
+
+                    document.getElementById("AddwalletAdress").innerHTML = getWallertAdress;
+                }
+             
+
+            });
+        });
+    </script>
+}
+

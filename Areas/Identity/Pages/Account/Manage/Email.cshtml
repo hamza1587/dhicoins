@@ -1,0 +1,73 @@
+﻿@page
+@model EmailModel
+@{
+    ViewData["Title"] = "Manage Email";
+    ViewData["ActivePage"] = ManageNavPages.Email;
+}
+
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="kt-grid__item kt-grid__item--fluid kt-app__content">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">@ViewData["Title"]</h3>
+                    </div>
+                </div>
+              
+                    <div class="kt-portlet__body">
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12">
+                                            <form id="email-form" method="post">
+                                                <div asp-validation-summary="All" class="text-danger"></div>
+                                                @if (Model.IsEmailConfirmed)
+                                                {
+                                                    <div class="form-floating input-group mb-3">
+                                                        <label asp-for="Email" class="form-label font-weight-bold" style="margin-top:-20px;"></label>&nbsp; &nbsp; &nbsp;
+                                                        <input asp-for="Email" class="form-control" disabled style="margin-left:-52px; margin-top:5px;" />
+                                                        <div class="input-group-append" style="margin-top:5px;">
+                                                            <span class="h-100 input-group-text text-success font-weight-bold" >✓</span>
+                                                        </div>
+                                                      
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="form-floating">
+                                                        <label asp-for="Email" class="form-label font-weight-bold mr-1"></label>
+                                                        <input asp-for="Email" class="form-control" disabled />
+                                                       
+                                                        <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
+                                                    </div>
+                                                }
+                                                <div class="form-floating">
+                                                    <label asp-for="Input.NewEmail" class="form-label font-weight-bold"></label>
+                                                    <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" />
+                                                  
+                                                    <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+                                                </div>
+                                                <br />
+                                                <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-20 btn  btn-primary">Change Email</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,213 @@
+﻿
+@{
+    ViewData["Title"] = "CryptoReceiveAddressDetail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<!-- begin:: Subheader -->
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container ">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                Crypto Receive Address
+            </h3>
+            <span class="kt-subheader__separator kt-hidden"></span>
+            <div class="kt-subheader__breadcrumbs">
+                <a href="CryptoReceiveAddress.html" class="kt-subheader__breadcrumbs-home">
+                    <i class="flaticon2-shelter"></i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Crypto Receive Address
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                    Details
+                </a>
+
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+<div class="kt-container  kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    Crypto Receive Address Detail
+                </h3>
+            </div>
+        </div>
+
+        <!--begin::Form-->
+        <form class="kt-form" id="CryptoReceiveAddressForm" asp-action="AddCryptoAddress" method="post" >
+         
+            <div class="kt-portlet__body">
+                <div class="row align-items-end">
+                    <div class="col-md-3">
+                        <div class="form-group">
+
+                            <label>Chain</label>
+                            <select asp-items="ViewBag.Chains" name="ChainId" id="chain-select" class="form-control"  required>
+                           
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <button id="btnOpen" type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#CryptoReceiveAddressDetail">
+                                <i class="fas fa-plus p-0"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" onclick="deleteChain()">
+                                <i class="fas fa-trash p-0"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Receive Address <span class="kt-font-danger">*</span></label>
+                            <input name="ReceiveAddress" type="text" class="form-control" required placeholder="Enter Valid Receive Address">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Commesion on Chain in % <span class="kt-font-danger">*</span></label>
+                            <input name="CommesionOnChain" type="number" class="form-control" placeholder="Commesion on Chain in %" min="0" step="0.1" max="100" required>
+                        </div>
+                       
+                    </div>
+                </div>           
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <Select name="Status" id="status-select" class="form-control" required>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </Select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <input  type="submit" class="btn btn-brand" value="Submit" >
+                    &nbsp;
+                    <a href="@Url.Action("CryptoReceiveAddress", "Admin")" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+        </form>
+
+        <!--end::Form-->
+    </div>
+
+</div>
+
+<!-- end:: Content -->
+<!--modal-->
+<div class="modal fade" id="CryptoReceiveAddressDetail" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Crypto Receive Address Detail </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <div class="form-group">
+                        <label for="" class="form-control-label">
+                            Chain Name <span class="kt-font-danger">*</span>
+                        </label>
+                        <input type="text" name="ChainName" class="form-control" id="">
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="form-control-label">
+                            Chain Code <span class="kt-font-danger">*</span>
+                        </label>
+                        <input type="text" name="ChainCode" class="form-control" id="">
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="form-control-label">
+                            Chain Status <span class="kt-font-danger">*</span>
+                        </label>
+                        <select name="ChainStatus" id="ChainStatus" class="form-control">
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btnSave" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @*<script src="~/js/CryptoReceiverAddress.js"></script>*@
+<script>
+  //Button to submit the Crypto Address Details 
+    $("#btnSave").click(function () {
+        $.ajax({
+            url: "/Admin/CryptoReceiveAddressDetail",
+            method: "Post",
+            data: $('#form').serialize(),
+            datatype: "json",
+            success: function (result) {
+                alert("Chain Added Successfully");
+                $("#CryptoReceiveAddressDetail").modal("hide");
+                $('#form')[0].reset();
+                updateDropdown();
+               },
+            error: function () {
+                alert("An error occurred while saving the User Crypto Address.");
+            }
+        })
+    })
+   
+    // Function to update the dropdown without reloading the page
+    function updateDropdown() {
+        $.ajax({
+            url: "/Admin/GetChains",
+            method: "GET",
+            success: function (result) {
+                $('#chain-select').html(result);
+            },
+            error: function () {
+                alert("An error occurred while updating the dropdown.");
+            }
+        });
+    }
+    //Function to delete the chain
+      function deleteChain() {
+          var selectedChain = $('#chain-select').val();
+        if (!selectedChain) {
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("DeleteChain", "Admin")',
+            data: { id: selectedChain },
+            success: function (result) {
+                $('#chain-select option[value="' + selectedChain + '"]').remove();
+                /*alert('Chain deleted successfully.');*/
+            },
+            error: function () {
+                alert('Failed to delete chain.');
+            }
+        });
+
+        
+
+    }
+   
+</script>
+}
